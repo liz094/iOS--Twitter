@@ -10,30 +10,33 @@ import UIKit
 
 class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
-    @IBOutlet weak var timeStampLabel: UILabel!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var profilePicImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
     
     var tweets = [Tweet]()
+    //var user = User.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.reloadData()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        //tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
+
         
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) -> () in
             self.tweets = tweets
-            for tweet in tweets{
-                print(tweet.text as Any)
-            }
-            //self.tableView.reloadData()
+            self.tableView.reloadData()
+//            self.user = user
+//            for tweet in tweets{
+//                print(tweet.text as Any)
+//            }
         }, failure: { (error:Error) in
             print(error.localizedDescription)
         })
 
+        //tableView.reloadData()
         // Do any additional setup after loading the view.
     }
 
@@ -44,7 +47,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        print(tweets==nil)
-//        print(tweets.count==nil)
+        print("count of tweets ISSSSS:\(tweets.count)")
         return tweets.count
     }
     
@@ -52,8 +55,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         
         let tweet = tweets[indexPath.row]
-        print("TTTTTTTEXTTTTTTTTT\(tweet)")
-        cell.tweetLabel.text = tweet.text
+
+        cell.tweet = tweet
+        //cell.tweetLabel.text = tweet.text
+        //cell.profileImageView.setImageWith((tweet.user?.profileUrl)!)
+
         return cell
     }
 
@@ -61,6 +67,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TwitterClient.sharedInstance?.logout()
         
     }
+
+    
     /*
     // MARK: - Navigation
 

@@ -59,6 +59,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2809F2911E6336C600FA2ED9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28DC33121E62C925008A8203 /* TweetCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		2886BCD71E61135B0065367F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,12 +114,12 @@
 		28F91F531E5C108B00C1379A /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				2809F2911E6336C600FA2ED9 /* Views */,
 				2886BCD91E61136A0065367F /* API */,
 				2886BCD81E6113620065367F /* view controllers */,
 				2886BCD71E61135B0065367F /* Models */,
 				28F91F541E5C108B00C1379A /* AppDelegate.swift */,
 				28F91F581E5C108B00C1379A /* Main.storyboard */,
-				28DC33121E62C925008A8203 /* TweetCell.swift */,
 				28F91F5B1E5C108B00C1379A /* Assets.xcassets */,
 				28F91F5D1E5C108B00C1379A /* LaunchScreen.storyboard */,
 				28F91F601E5C108B00C1379A /* Info.plist */,

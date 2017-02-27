@@ -39,7 +39,7 @@ class User: NSObject {
         tagline = dictionary["description"] as? String
     }
     
-    static var _currentUser:User?
+    static var _currentUser: User?
     
     class var currentUser: User?{
         get {
@@ -48,10 +48,9 @@ class User: NSObject {
             let userData = defaults.object(forKey: "currentUserData") as? Data
             
             if let userData = userData{
-                //let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary
-                
-                
-                //_currentUser = User(dictionary: dictionary)
+//                let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary 
+//                
+//                _currentUser = User(dictionary: dictionary)
             }
             }
             
