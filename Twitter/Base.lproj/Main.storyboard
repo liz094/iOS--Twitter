@@ -559,13 +559,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMJ-bT-bO2">
-                                <rect key="frame" x="97" y="103" width="46" height="21"/>
+                                <rect key="frame" x="97" y="103" width="45.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yMB-Iz-KDZ">
-                                <rect key="frame" x="95" y="132" width="71" height="18"/>
+                                <rect key="frame" x="95" y="131.5" width="70.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -592,7 +592,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UlY-v0-CZU">
-                                <rect key="frame" x="16" y="219.5" width="343" height="17"/>
+                                <rect key="frame" x="16" y="219" width="343" height="17"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -601,7 +601,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UlY-v0-CZU" firstAttribute="leading" secondItem="mRS-0a-kSI" secondAttribute="leading" constant="16" id="29f-b0-DNi"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EMJ-bT-bO2" secondAttribute="trailing" constant="232" id="E1y-aH-2Kl"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EMJ-bT-bO2" secondAttribute="trailing" constant="20" id="E1y-aH-2Kl"/>
                             <constraint firstItem="Tl8-qs-t4q" firstAttribute="leading" secondItem="mRS-0a-kSI" secondAttribute="leading" constant="16" id="Kke-Lb-NDe"/>
                             <constraint firstItem="UlY-v0-CZU" firstAttribute="top" secondItem="yMB-Iz-KDZ" secondAttribute="bottom" constant="70" id="N0I-V9-HYN"/>
                             <constraint firstItem="yMB-Iz-KDZ" firstAttribute="leading" secondItem="Tl8-qs-t4q" secondAttribute="trailing" constant="8" id="Nxc-0u-Bxb"/>
