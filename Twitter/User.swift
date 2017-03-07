@@ -13,7 +13,11 @@ class User: NSObject {
     var name : String?
     var screenname: String?
     var profileUrl: URL?
+    var bgImageUrl: String?
     var tagline: String?
+    var followersCount: Int?
+    var followingCount: Int?
+    var tweetCount: Int?
     
     var dictionary: NSDictionary?
     
@@ -30,11 +34,18 @@ class User: NSObject {
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
+        followersCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
+        tweetCount = dictionary["statuses_count"] as? Int
         
         let profileUrlString = dictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString{
             profileUrl = URL(string: profileUrlString)
+
         }
+        
+        
+        bgImageUrl = dictionary["profile_banner_url_https"] as? String
         
         tagline = dictionary["description"] as? String
     }
@@ -48,9 +59,10 @@ class User: NSObject {
             let userData = defaults.object(forKey: "currentUserData") as? Data
             
             if let userData = userData{
-//                let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as! NSDictionary 
-//                
-//                _currentUser = User(dictionary: dictionary)
+                if let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as? NSDictionary{
+                
+                _currentUser = User(dictionary: dictionary)
+                }
             }
             }
             
@@ -69,7 +81,7 @@ class User: NSObject {
                 
                 defaults.set(data, forKey:"currentUserData")
             }else{
-                defaults.set(nil,forKey: "currentUserData")
+                defaults.removeObject(forKey: "currentUserData")
             }
             
             defaults.synchronize()

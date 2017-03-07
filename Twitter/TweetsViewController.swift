@@ -46,8 +46,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print(tweets==nil)
-        print("count of tweets ISSSSS:\(tweets.count)")
         return tweets.count
     }
     
@@ -57,9 +55,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tweet = tweets[indexPath.row]
 
         cell.tweet = tweet
-        //cell.tweetLabel.text = tweet.text
-        //cell.profileImageView.setImageWith((tweet.user?.profileUrl)!)
-
+        cell.delegate = self as? TweetTableViewCellDelegate //assign the cell's delegate to this view controller, so that this controller can handle pushing the profileViewController or perform segue
+       
         return cell
     }
 
@@ -67,16 +64,58 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         TwitterClient.sharedInstance?.logout()
         
     }
-
     
-    /*
-    // MARK: - Navigation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
 
+//    func imageClicked(){
+//        print("image tapped")
+//        self.performSegue(withIdentifier: "toProfile", sender: Any?)
+//    }
+    
+    
+    // MARK: - Navigation
+/*
+    func prepare(for segue: UIStoryboardSegue, sender: UIButton){
+        let cell = sender as! TweetCell
+        let indexPath = tableView.indexPath(for: cell)
+        let tweet
+        
+    }*/
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier != "toDetail"){
+            return
+    }
+        let cell = sender as! TweetCell
+        let indexPath = tableView.indexPath(for: cell)
+        
+        let tweet = tweets[indexPath!.row]
+        
+        let detailViewController = segue.destination as! DetailViewController
+        detailViewController.tweet = tweet
+//        }
+        
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
+extension TweetsViewController: TweetTableViewCellDelegate{
+    func profileImageViewTapped(cell: TweetCell, user: User) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewVontroller") as? ProfileViewController{
+            profileVC.user = user
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+    }
+}
+
+
+
+

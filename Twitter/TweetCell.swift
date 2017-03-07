@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol TweetTableViewCellDelegate: class{
+    func profileImageViewTapped(cell: TweetCell, user: User)
+}
+
+
 class TweetCell: UITableViewCell {
+    
+    weak var delegate: TweetTableViewCellDelegate?
 
     @IBOutlet weak var tweetLabel: UILabel!
     
@@ -24,8 +31,14 @@ class TweetCell: UITableViewCell {
        var tweet: Tweet!{
         didSet{
             tweetLabel.text = tweet.text
+            
             profileImageView.setImageWith((tweet.user?.profileUrl)!)
             profileImageView.layer.cornerRadius = 5
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+            profileImageView.addGestureRecognizer(tap)
+            profileImageView.isUserInteractionEnabled = true
+
             userNameLabel.text = tweet.user?.name
             //favoriteButton.imageView?.image = UIImage(named:"favor-icon.png")
             favoriteCountLabel.text = String(tweet.favoritesCount)
@@ -38,6 +51,14 @@ class TweetCell: UITableViewCell {
 
         }
     }
+    
+    func imageTapped(_gesture: UITapGestureRecognizer){
+        print("image tapped")
+        if let delegate = delegate{
+            delegate.profileImageViewTapped(cell: self, user: tweet.user!)
+        }
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
